@@ -22,7 +22,7 @@ MediCare Online Pharmacy is a responsive e-commerce website that allows users to
 
 ## Live Demo
 
-Your website will be live at `https://yourusername.github.io/medicare-online-pharmacy/` within a few minutes.
+Your website will be live at [ Live Demo ](https://muzamal-478.github.io/medicare-online-pharmacy/) within a few minutes.
 
 ## How to Run Locally
 
