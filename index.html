@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>MediCare Online Pharmacy</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <style>
+        :root {
+            --primary: #2c6e89;
+            --secondary: #34c759;
+            --accent: #f1faff;
+            --dark: #1a2c34;
+            --light: #ffffff;
+            --highlight: #ff6f61;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--accent);
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        .section-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 10px 0;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: linear-gradient(90deg, var(--primary), #3a8aa9);
+            padding: 1rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .navbar-brand {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--light);
+            display: flex;
+            align-items: center;
+        }
+        .navbar-brand i {
+            margin-right: 8px;
+            font-size: 1.5rem;
+        }
+        .nav-link {
+            color: var(--light);
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+        }
+        .nav-link:hover {
+            color: var(--secondary);
+        }
+        .search-bar .form-control {
+            border-radius: 20px;
+            padding: 0.5rem 1.2rem;
+            border: 1px solid var(--primary);
+            transition: all 0.3s ease;
+        }
+        .search-bar .form-control:focus {
+            border-color: var(--secondary);
+            box-shadow: 0 0 5px rgba(52, 199, 89, 0.5);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            position: relative;
+            min-height: 90vh;
+            text-align: center;
+            color: var(--light);
+            overflow: hidden;
+        }
+        .hero-section img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            filter: brightness(60%);
+        }
+        .hero-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 800px;
+        }
+        .hero-content h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(2rem, 5vw, 4rem);
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .hero-content p {
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            margin-bottom: 30px;
+        }
+        .btn-primary {
+            background-color: var(--secondary);
+            border-color: var(--secondary);
+            padding: 0.7rem 2rem;
+            border-radius: 25px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #2bb64c;
+            border-color: #2bb64c;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Categories Section */
+        .categories {
+            padding: 60px 0;
+            background-color: var(--light);
+        }
+        .category-card {
+            background-color: var(--accent);
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .category-card i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        .category-card h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.4rem;
+            color: var(--dark);
+        }
+        .category-card p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* About Us Section */
+        .about-us {
+            padding: 60px 0;
+            background-color: var(--light);
+        }
+        .about-us p {
+            font-size: 1.1rem;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Products Section */
+        .products {
+            padding: 60px 0;
+            background-color: var(--accent);
+        }
+        .product-card {
+            background-color: var(--light);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        }
+        .product-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: contain;
+            margin-bottom: 15px;
+        }
+        .product-card h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.3rem;
+            color: var(--dark);
+        }
+        .product-card p {
+            color: var(--primary);
+            font-weight: 500;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+        .btn-success {
+            background-color: var(--secondary);
+            border-color: var(--secondary);
+            border-radius: 20px;
+            padding: 0.5rem 1.5rem;
+            transition: all 0.3s ease;
+        }
+        .btn-success:hover {
+            background-color: #2bb64c;
+            border-color: #2bb64c;
+        }
+
+        /* Product Details Section */
+        .product-details {
+            padding: 60px 0;
+            background-color: var(--light);
+        }
+        .product-details img {
+            width: 100%;
+            max-height: 400px;
+            object-fit: contain;
+            border-radius: 12px;
+        }
+        .details h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.2rem;
+            color: var(--dark);
+            margin-bottom: 20px;
+        }
+        .details p.price {
+            color: var(--primary);
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        .details .form-select {
+            width: 200px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-color: var(--primary);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 60px 0;
+            background-color: var(--light);
+        }
+        .contact form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .contact .form-control {
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-color: var(--primary);
+        }
+        .contact .form-control:focus {
+            border-color: var(--secondary);
+            box-shadow: 0 0 5px rgba(52, 199, 89, 0.5);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(90deg, var(--primary), #3a8aa9);
+            color: var(--light);
+            padding: 40px 0;
+        }
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .footer-links h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+        .footer-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+        .footer-bottom {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .navbar-nav {
+                text-align: center;
+            }
+            .search-bar {
+                margin: 10px 0;
+            }
+        }
+        @media (max-width: 768px) {
+            .navbar-brand {
+                font-size: 1.5rem;
+            }
+            .hero-section {
+                min-height: 60vh;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .product-card {
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="#"><i class="fas fa-plus-square"></i> MediCare</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <div class="search-bar mx-lg-3 flex-grow-1">
+                        <input class="form-control" type="search" placeholder="Search medicines..." aria-label="Search" id="search" onkeyup="filterProducts()">
+                    </div>
+                    <ul class="navbar-nav ms-lg-auto">
+                        <li class="nav-item"><a class="nav-link" href="#" onclick="showSection('home')">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#" onclick="showSection('about')">About Us</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#" onclick="showSection('products')">Shop</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#" onclick="showSection('product-details')">Product Details</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#" onclick="showSection('contact')">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section id="home" class="hero-section">
+        <img src="hero.jpg" alt="Pharmacy Banner">
+        <div class="hero-content">
+            <h1>Your Trusted Online Pharmacy</h1>
+            <p>Order medicines and healthcare products with ease and confidence.</p>
+            <a href="#" class="btn btn-primary" onclick="showSection('products')">Shop Now</a>
+        </div>
+    </section>
+
+    <section class="categories">
+        <div class="container">
+            <h2 class="section-title">Explore Categories</h2>
+            <div class="row">
+                <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="category-card">
+                        <i class="fas fa-capsules"></i>
+                        <h3>Prescription Medicines</h3>
+                        <p>Order your prescribed medications securely.</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="category-card">
+                        <i class="fas fa-pills"></i>
+                        <h3>Vitamins & Supplements</h3>
+                        <p>Boost your health with our range of supplements.</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="category-card">
+                        <i class="fas fa-band-aid"></i>
+                        <h3>First Aid Essentials</h3>
+                        <p>Stay prepared with our first aid products.</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="category-card">
+                        <i class="fas fa-baby"></i>
+                        <h3>Baby Care Products</h3>
+                        <p>Everything you need for your little ones.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about-us">
+        <div class="container">
+            <h2 class="section-title">About Us</h2>
+            <p>MediCare Online Pharmacy is dedicated to providing authentic medications and healthcare products at your fingertips. With a team of certified pharmacists and a commitment to quality, we ensure your health is in safe hands. Shop with us for fast delivery and exceptional customer service.</p>
+        </div>
+    </section>
+
+    <section id="products" class="products">
+        <div class="container">
+            <h2 class="section-title">Our Top Selling Products</h2>
+            <div class="row" id="product-grid">
+                <div class="col-md-3 col-sm-6">
+                    <div class="product-card">
+                        <img src="paracetamol.jpg" alt="Paracetamol">
+                        <h3>Paracetamol 500mg</h3>
+                        <p>$5.99</p>
+                        <a href="#" class="btn btn-success">Add to Cart</a>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="product-card">
+                        <img src="VitaminC.jpg" alt="Vitamin C">
+                        <h3>Vitamin C 1000mg</h3>
+                        <p>$9.99</p>
+                        <a href="#" class="btn btn-success">Add to Cart</a>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="product-card">
+                        <img src="Vitamin.jpg" alt="Antacid">
+                        <h3>Antacid Tablets</h3>
+                        <p>$7.49</p>
+                        <a href="#" class="btn btn-success">Add to Cart</a>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="product-card">
+                        <img src="Bandage.jpg" alt="Bandages">
+                        <h3>Adhesive Bandages</h3>
+                        <p>$3.99</p>
+                        <a href="#" class="btn btn-success">Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <button class="btn btn-primary" onclick="alert('More products coming soon!')">Load More</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="product-details" class="product-details">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <img src="paracetamol.jpg" alt="Product">
+                </div>
+                <div class="col-md-6 details">
+                    <h1>Paracetamol 500mg</h1>
+                    <p class="price">$5.99</p>
+                    <select class="form-select" aria-label="Pack size selection">
+                        <option value="10">10 Tablets</option>
+                        <option value="20">20 Tablets</option>
+                        <option value="50">50 Tablets</option>
+                    </select>
+                    <button class="btn btn-success">Add to Cart</button>
+                    <p class="mt-4">Description: Paracetamol is a widely used pain reliever and fever reducer suitable for adults and children. Always follow dosage instructions or consult a doctor before use.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Get in Touch</h2>
+            <form>
+                <div class="mb-3">
+                    <input type="text" class="form-control" placeholder="Your Name" required>
+                </div>
+                <div class="mb-3">
+                    <input type="email" class="form-control" placeholder="Your Email" required>
+                </div>
+                <div class="mb-3">
+                    <textarea class="form-control" rows="5" placeholder="Your Message" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#" onclick="showSection('home')">Home</a></li>
+                        <li><a href="#" onclick="showSection('about')">About Us</a></li>
+                        <li><a href="#" onclick="showSection('products')">Shop</a></li>
+                        <li><a href="#" onclick="showSection('contact')">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Returns & Refunds</a></li>
+                        <li><a href="#">Shipping Info</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li>Email: support@medicare.com</li>
+                        <li>Phone: +1-800-555-0101</li>
+                        <li>Address: 123 Health St, Wellness City</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 MediCare. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                section.style.display = 'none';
+            });
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.style.display = 'block';
+            }
+        }
+
+        function filterProducts() {
+            const searchTerm = document.getElementById('search').value.toLowerCase();
+            const products = document.querySelectorAll('.product-card');
+            products.forEach(product => {
+                const productName = product.querySelector('h3').textContent.toLowerCase();
+                const parent = product.parentElement;
+                if (productName.includes(searchTerm)) {
+                    parent.style.display = 'block';
+                } else {
+                    parent.style.display = 'none';
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            showSection('home');
+        });
+    </script>
+</body>
+</html>
